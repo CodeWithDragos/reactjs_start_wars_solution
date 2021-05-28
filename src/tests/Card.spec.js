@@ -9,14 +9,19 @@ import Card from '../Card'
 test('loads and displays greeting', async () => {
     const character = {
         url: "",
-        name: "Test",
-        films: []
+        name: "Test Character",
+        films: [],
+        birth_year: 19990
     }
 
-    render(<Router>
+    const  {getByText} = render(<Router>
         <Card character={character} />
     </Router>)
 
-    expect(screen.getByText('Test')).toBeVisible()
+    fireEvent.click(getByText(/Add/)) // regex matching
+    fireEvent.click(getByText(/Add/)) // regex matching
+    fireEvent.click(getByText(/Add/)) // regex matching
+
+    expect(screen.getByText('Counter: 3')).toBeVisible()
 })
 
